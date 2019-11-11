@@ -1,0 +1,372 @@
+
+
+
+
+
+
+This is what I need to do:
+    I need to break down the connection process to it's bare bones.
+        Database creation and table creation
+        Server creation
+        postman testing
+
+
+
+How to store data inside a database using a server?
+
+
+
+
+
+
+
+
+
+
+
+===============================================================================================================
+==================================DATABASE CREATION============================================================
+===============================================================================================================
+Database Creation:
+    First login to postgresql-
+        Go into the command line or go to the custom terminal for postgresql and enter 
+
+            { psql -U postgres }
+
+            (This allows you to type the specific user you want to login and access postgres. In this case
+            we are using "postgres", we know that password for this already. ***The password input would
+            be invisible so YOU WONT SEE WHAT YOU ARE TYPING***)
+
+
+    Now create a new database once you have access to postgres. To do this you have to type 
+
+        {  CREATE DATABASE desiredname;  }
+        (The semi-colon is extreamly important here to to close and excute the code.)
+
+    
+    Next open pgAdmin4-
+        Once there, you can navigate to the tables in your new database by:
+            Opening up the desired server.
+            Opening up the desired database.
+            Opening up "Schemas".
+            Opening up "public"
+            Then head down to tables.
+    
+    You can right click on tables and create a table.
+        Give the table a name, along wit ha breif description of what's the purpose of the table.
+        Next click the Columns tab to the top and start adding the table coloumns, whiles setting the data type.
+
+    After the table has been created you can go back to the table you just made and add in the values.
+        Once you are done adding the values to the table, head to the top and click save icon located under "Dashboard"
+
+
+
+    To view the data inside the terminal, navigate to the right database by using { \c database name }.
+        Once there, you can type {  SELECT * FROM table name  }
+
+
+
+
+
+
+
+
+
+===============================================================================================================
+====================================NODEMON & EXPRESS==========================================================
+===============================================================================================================
+
+
+To use NODE:
+    1. Install it from the browser.
+    2. Navigate to the project folder in the terminal.
+    3. Run node by typing {node} in the terminal.
+        This will allow you to run javascript files using the terminal.
+    4. To run a script file, ensure that the terminal is in the location of
+        the server.js, then inside of the terminal type {node filename.js}
+
+
+
+Install package.json by { npm init}
+
+
+
+
+How to install nodemon:
+    1. {npm install nodemon --save-dev}  This will save nodemon as a developer dependecy.
+        Meaning, that when it's time to build the app, nodemon wont be considered as a 
+        dependecy and be added into the package.
+        Also, you need to add nodemon to the scripts "start". So it will look like this:
+
+            { nodemon server.js }
+
+
+
+
+
+
+How to install express:
+    1. {npm install express}   This automaticly will be consider as a devdependency.
+
+
+
+EXPRESS SERVER
+
+1.The first thing you do when creating a server is to create an express var and store the 
+require function targeting express.
+
+    const express = require('express');
+
+2.Next, you have to create var "app" and call the express var you just made.
+
+    const app = express();
+
+3.Lastly, you have to call the app function now and assign a listerner to it for the 
+port you want node to listen to for requests.
+
+
+Because you have this server now, you have to create some logic for the server telling it what
+to do. So what will happen is the Browser will send requests to the server using the url.
+The server will see the url and if that link is on the root directory, then you can define 
+specific logic that happens only on that page. The server then RESPONDS with sending code 
+or files back to the browser.
+
+You can use:
+.get()
+.post()
+.delete()
+
+
+app.get('/', (req, res) => {
+    req.send("<h1>This can be html code or reqular text.</h1>");
+})
+
+The above code is broken down as follows:
+
+    app.get()- is a function that handles the communication request if the conditions are right.
+    The first argument '/', is used to determine where the request is coming from on the site.
+        '/' means that it is coming off the root directory. If it were something like this 
+        '/profile', then the request would have come from the profile page or to the profile page.
+
+    (req, res)- These are the perameters of the following arrow function. It receives 2 inputs,
+    res, aka request and res, aka response. These are used to represent the request and response
+    syntax.
+    Within the {} you write the desired code. First you start with whether it will be a reques or
+    a response, next you access it's member opporator and send something back or receive something.
+
+When sending back to the browser, you can either send javascript objects or regular html.
+
+
+
+
+
+
+
+
+
+Install Knex    {  npm install knex --save  }
+
+Install  postgresql { npm install pg }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ok what am I missing?
+    I'm still not sure about the communication between the server and the database. When am I 
+    suppose to convert something to json and when am I suppose to convert it to an object?
+
+    I don't get how knex connect to the postgresql.
+
+    I don't understand how data moves or travels using the server. 
+        What data is being sent when making a request to a server?
+        What does it look like when something is coming from the server?
+        What does it look like when something is being sent to the server?
+
+
+
+
+
+
+
+
+
+
+
+
+Ok, what the heck is happening?
+    The server receives request for certain pages. Depending on the page request we can determine what our
+        response will be. The browser can ask for files using a .get request. Or the browser can send files
+        using a .post request.All this happens within the communication channel between the browser and the
+        server. That's not the database. So I need to practice the communicating between the browser and the 
+        server. Once I understand this, I'll be able to add another party to the mix, which is the database.
+        The server acts as the middle man between the database and the browser. So it's never the browser 
+        interacting directly with the server but the server handling all the browser's request and data. 
+
+        So what do I need to do?
+            I need to know what's the data that's being transfered.
+            How to access that data?
+            How to target specific parts of that data?
+            How to read that data?
+            How to see that data?
+        
+        What do I know about the accessing the data that's sent?
+            I can send .get requests then send a response from the server.
+    
+
+
+
+Remember, your server don't host the files for your website, so you can't exactly respond from the server by 
+sending the needed files...Your files is being hosted and viewed by another temporary server. You can create
+a server have have it listen to the same ip address as the temporary server but you don't need it to access 
+files...
+
+    If I have my server listen to the temporary server, then when data passes to that port, then server2 
+    will also pick up the same data. When I access those ports, server2 will send a response to the browser
+    which will be the data from the database. I can use the information from the database to build the page.
+    So I can set something up where, if this port is accessed, then respond with the information from the database.
+    Also if you get a post request from this port, then add this into the database.
+
+
+
+
+    LET'S TEST THE THEORY
+    ....
+    There's an issue, server1 is running the files, and server2 is waiting to receive request from port 3000.
+    Here's the issue:
+        When server 2 is listening to server1, it completely takes over server1. I believe it replaces the server,
+        so the commands that send it back to the files, are none existent. So when it takes over, there is nothing
+        to send back, which is why I get those issues.
+
+        How do the browser send requests to server2, whiles maintaining it's files for this site?
+            I will have to use a fetch request or {fetch('http://localhost:portnumber/sub-directory')}. What fetch
+            does, is it makes a get request to that port where server2 is listening, then receives instructions 
+            based on it's responce.
+
+            IT WORKED!!!!!!
+
+
+
+I am making significant progress with this project development!
+
+
+
+
+
+What do I need to do now?
+    I need to map out the data structure.
+        So I need to list all the data I'm going to be collecting.
+    I need to send information back to the front end.
+
+
+
+
+
+
+
+
+
+Data Structure:
+    projects
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blah blah blah blah....Now lets walk through this...
+
+
+Here's the walk through of a general understanding of what I know is going on....
+
+Starting from the top.
+
+First create the server using express.
+Next import the needed node packages.
+
+cors - When using fetch, we are accessing the outside world, and a safty feature of Google chrome to 
+    prevent that. This packgage avoids those restrictions so that we will be able to access our server.
+
+body-parser - The convers the json into a javascript object so that we can use it. This happens when 
+    we need to read the json coming from the browser. (Coming to the server of course.)
+
+knex - This allows us to connect and communicate with the postgresql. We use the info needed to login into
+    the database and then give it instructions from there.
+
+pg- This is the postgresql package that allows react to access and communicate with postgresql. It adds it in
+    it's libruary of references.
+
+
+
+
+Now what happen next:
+
+    +First we define a database variable using knex as the method to enter the database info.
+        
+        const database1 = knex({
+            client:'pg',
+            connection: {
+                host: '127.0.0.1',
+                user : 'postgres',
+                password :'hotzy7777',
+                database : 'test'
+            }
+            
+        })
+
+
+        Once we have this reference, we can now use it in one of the routes for the server.
+
+    +To access the data from the database, you have to use the knex site for refference so that you can know the 
+        commands needed.
+
+        
+            app.get('/projects', (req, res) => {
+                db1.select('*').from('projects').then(data => {
+                    console.log("Data from DB1: ")
+                    console.log(data);
+                    res.send(data)
+                })
+            
+            })   
+
+        The above code defines the route, then inside that route it selects all the data in the table,
+        then logs them to the console. Lastly it sends the data back to the browser using { res.send(data) }
+
+
+
+
+        So what do I have currently?
+            I understand how to send data between the browser and the server and how to read that data.
+            I understand how to retreive data from the database whiles editing that data.
+                I need to work on displaying that data.
