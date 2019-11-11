@@ -122,7 +122,7 @@ app.get('/projects', (req, res, next) => {
 
 app.get('/', (req, res, next) => {
   console.log("You are connected to the root.");
-  res.json("Welcome home")
+  res.json("Welcome home Barry")
 })
 
 
