@@ -129,4 +129,6 @@ app.get('/', (req, res, next) => {
 
 
 
-app.listen(3001);
+app.listen(process.env.PORT || 3001, () => {
+  console.log("App is running on port " + process.env.PORT)
+});
