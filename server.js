@@ -96,7 +96,11 @@ app.get('/current-project', (req, res, next) => {
 
 
 
+app.get('/test', (req, res, next) => {
 
+  res.send("You came to the test site");
+  res.end();
+})
 
 
 
