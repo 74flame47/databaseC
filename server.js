@@ -4,17 +4,19 @@ const bparser = require('body-parser');
 const knex = require('knex');
 const cors = require('cors');
 
+
+
+
+
 const db1 =  knex({
     client: 'pg',
     connection: {
-      host : '127.0.0.1',
-      user : 'postgres',
-      password : 'hotboyz7777',
-      database : 'mysite'
+      connectionString: process.env.DATABASE_URL,
+      ssl: true,
     }
   });
 
-/** 
+/** LOCALHOST CONNECTION
 const db2 = knex({
   client:'pg',
   connection: {
