@@ -12,7 +12,7 @@ const db1 =  knex({
     client: 'pg',
     connection: {
       connectionString: process.env.DATABASE_URL,
-      ssl: true,
+      ssl: true
     }
   });
 
@@ -58,6 +58,11 @@ const tempbase = {
 }
 
 
+
+
+
+
+
 app.post('/signin', (req, res, next) => {
   const {name, age, birthday, id} = req.body;
   res.send(`Thank you for sending your information ${name}`);
@@ -79,6 +84,22 @@ app.post('/add-project', (req, res, next) => {
 
 
 
+
+app.post('/add-skill', (req, res, next) => {
+  const {categories} = req.body;
+  console.log(req.body)
+  db1('skills').insert({
+    categories: categories
+  }).then(console.log)
+  res.json(`Your skill ${categories} has been added.`);
+})
+
+
+
+
+
+
+
 app.post('/current-project', (req, res, next) => {
   const {currentProject} = req.body;
   tempbase.currentProject = currentProject
@@ -92,16 +113,6 @@ app.get('/current-project', (req, res, next) => {
   setTimeout(() =>{
     res.json(tempbase.currentProject);
   }, 20 );
-})
-
-
-
-
-
-app.get('/test', (req, res, next) => {
-
-  res.send("You came to the test site");
-  res.end();
 })
 
 
