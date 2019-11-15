@@ -80,6 +80,34 @@ app.post('/add-project', (req, res, next) => {
 
 
 
+
+
+
+
+
+app.post('/update-project', (req, res, next) => {
+  const {title, description, categories, date, id} = req.body;
+  console.log(req.body)
+
+  knex('projects')
+  .where({ id: id})
+  .update({ title: title,
+            description: description,
+            categories: categories}, ['You', 'sent', 'this'])
+
+
+  res.json(`Your project ${title} has been updated.`);
+})
+
+
+
+
+
+
+
+
+
+
 app.post('/add-skill', (req, res, next) => {
   const {categories} = req.body;
   console.log(req.body)
@@ -88,6 +116,7 @@ app.post('/add-skill', (req, res, next) => {
   }).then(console.log)
   res.json(`Your skill ${categories} has been added.`);
 })
+
 
 
 
@@ -102,9 +131,9 @@ app.get('/projects', (req, res, next) => {
       const all = [skills, projects];
       res.json(all)
       res.end();
-
     })
   })
+
 })
 
 
