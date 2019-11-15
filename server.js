@@ -53,11 +53,6 @@ app.use(bparser.json())
 
 
 
-const tempbase = {
-  currentProject: 'none'
-}
-
-
 
 
 
@@ -92,27 +87,6 @@ app.post('/add-skill', (req, res, next) => {
     categories: categories
   }).then(console.log)
   res.json(`Your skill ${categories} has been added.`);
-})
-
-
-
-
-
-
-
-app.post('/current-project', (req, res, next) => {
-  const {currentProject} = req.body;
-  tempbase.currentProject = currentProject
-  console.log("The new current project is " + tempbase.currentProject.title  + " Post request")
-  res.json(["The current project has been added to the server"])
-})
-
-app.get('/current-project', (req, res, next) => {
-  console.log(" Get request" + tempbase.currentProject)
-
-  setTimeout(() =>{
-    res.json(tempbase.currentProject);
-  }, 20 );
 })
 
 
