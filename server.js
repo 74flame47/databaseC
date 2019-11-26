@@ -89,13 +89,13 @@ app.post('/update-project', (req, res, next) => {
   const {title, description, categories, date, id} = req.body;
   console.log(req.body)
 
-  knex('projects')
+  db1('projects')
   .where( 'id', id)
   .update({ title: title,
             description: description,
             categories: categories})
   .then(() => {
-    knex.select()
+    db1.select()
       .from('projects')
       .then((projects) => {
         res.send(projects);
