@@ -90,10 +90,17 @@ app.post('/update-project', (req, res, next) => {
   console.log(req.body)
 
   knex('projects')
-  .where({ id: id})
+  .where( 'id', id)
   .update({ title: title,
             description: description,
-            categories: categories}, ['You', 'sent', 'this'])
+            categories: categories})
+  .then(() => {
+    knex.select()
+      .from('projects')
+      .then((projects) => {
+        res.send(projects);
+      })
+  })
 
 
   res.json(`Your project ${title} has been updated.`);
