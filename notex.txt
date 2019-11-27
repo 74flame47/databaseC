@@ -370,3 +370,58 @@ Now what happen next:
             I understand how to send data between the browser and the server and how to read that data.
             I understand how to retreive data from the database whiles editing that data.
                 I need to work on displaying that data.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                package.js orginal
+
+
+                {
+  "name": "databasec",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "knex": "^0.19.5",
+    "pg": "^7.12.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "dev": "concurrently \"npm run server\""
+  },
+  "author": "",
+  "license": "ISC"
+}
