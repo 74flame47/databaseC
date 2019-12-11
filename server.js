@@ -113,9 +113,14 @@ app.post('/delete-project', (req, res, next) => {
   console.log(req.body)
 
   db1('projects')
-  .where( {id: id})
+  .where('id', id)
   .del()
 
+
+
+
+
+  
   res.json(`Your project ${title}, ${id} has been deleted.`);
 })
 
