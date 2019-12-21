@@ -118,13 +118,6 @@ app.post('/delete-project', (req, res, next) => {
   .then(() => {
     res.json(`Your project ${title}, ${id} has been deleted.`);
   })
-
-
-
-
-
-
-  
 })
 
 
@@ -145,6 +138,12 @@ app.post('/add-skill', (req, res, next) => {
 })
 
 
+
+app.post('/featured-photos', (req, res, next) => {
+  const {title} = req.body;
+  console.log(req.body)
+  res.json(`You sent ${title}.`);
+})
 
 
 
