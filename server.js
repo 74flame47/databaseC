@@ -141,8 +141,15 @@ app.post('/add-skill', (req, res, next) => {
 
 app.post('/featured-photos', (req, res, next) => {
   const {title} = req.body;
-  console.log(req.body)
-  res.json(`You sent ${title}.`);
+
+  db1.select('*').from('photos').then(photos => {
+
+    res.json(photos);
+    res.end();
+  })
+
+
+  
 })
 
 
