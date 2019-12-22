@@ -144,7 +144,7 @@ app.post('/featured-photos', (req, res, next) => {
 
   db1('photos').where('title', title).then(photos => {
     console.log(photos);
-    res.json(`You have access to the photos.`);
+    res.json(photos);
   })
 })
 
