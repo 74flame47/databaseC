@@ -142,14 +142,10 @@ app.post('/add-skill', (req, res, next) => {
 app.post('/featured-photos', (req, res, next) => {
   const {title} = req.body;
 
-  db1.select('*').from('photos').then(photos => {
-
-    res.json(photos);
-    res.end();
+  db1('photos').where('title', title).then(photos => {
+    console.log(photos);
+    res.json(`You have access to the photos.`);
   })
-
-
-  
 })
 
 
