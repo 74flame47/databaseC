@@ -151,7 +151,7 @@ app.post('/featured-photos', (req, res, next) => {
 
 
 
-app.get('/projects', (req, res, next) => {
+app.get('/projects', (req, res, next) => {     
 
   db1.select('*').from('skills').then(skills => {
     db1.select('*').from('projects').then(projects => {
