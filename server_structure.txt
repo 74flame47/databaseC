@@ -1,0 +1,23 @@
+Data Base Structure:
+
+    Tables:
+        photos
+            -id
+            -title
+            -img0
+            -img1
+            -img2
+
+        projects
+            -id
+            -categories
+            -title
+            -description
+            -image
+            -started
+            -ended
+
+        skills
+            -id
+            -categories
+            -started

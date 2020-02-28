@@ -66,12 +66,13 @@ app.post('/signin', (req, res, next) => {
 
 
 app.post('/add-project', (req, res, next) => {
-  const {title, description, categories, date} = req.body;
+  const {title, description, categories, image, date} = req.body;
   console.log(req.body)
   db1('projects').insert({
     title: title,
     description: description,
     categories: categories,
+    image: image,
     started: new Date()
   }).then(console.log)
   res.json(`Your project ${title} has been added.`);
@@ -86,14 +87,15 @@ app.post('/add-project', (req, res, next) => {
 
 
 app.post('/update-project', (req, res, next) => {
-  const {title, description, categories, date, id} = req.body;
+  const {title, description, categories,image, date, id} = req.body;
   console.log(req.body)
 
   db1('projects')
   .where( 'id', id)
   .update({ title: title,
             description: description,
-            categories: categories})
+            categories: categories,
+            image: image})
   .then(() => {
     db1.select()
       .from('projects')
